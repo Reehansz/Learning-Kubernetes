@@ -120,10 +120,10 @@ This guide should give a clear foundational understanding of Kubernetes for both
     namespace: default
     labels:
       app: nginx
-
 ## spec
 Defines the desired state of the resource. The content of this section varies depending on the resource type.
 Example for a Deployment:
+```yaml
 spec:
   replicas: 3
   selector:
@@ -143,6 +143,7 @@ spec:
 ## status
 Provides the current status of the resource. This section is typically populated by the Kubernetes system and is not included in the initial YAML file.
 Example:
+```yaml
 status:
   replicas: 3
   updatedReplicas: 3
@@ -152,6 +153,7 @@ status:
 labels
 Key-value pairs used to organize and select resources.
 Example:
+```yaml
 metadata:
   labels:
     app: nginx
@@ -159,6 +161,7 @@ metadata:
 annotations
 Key-value pairs used to attach arbitrary non-identifying metadata to resources.
 Example:
+```yaml
 metadata:
   annotations:
     description: "This is an annotation"
@@ -166,6 +169,7 @@ metadata:
 selector
 Used to select a group of resources based on their labels.
 Example:
+```yaml
 spec:
   selector:
     matchLabels:
@@ -174,6 +178,7 @@ spec:
 template
 Defines the Pod template for resources like Deployments and ReplicaSets. It includes metadata and spec for the Pods.
 Example:
+```yaml
 template:
   metadata:
     labels:
@@ -197,43 +202,44 @@ metadata: This section contains metadata about the deployment or service, such a
 spec: This section contains the specifications for the deployment or service, such as the number of replicas, the container image, and the ports that the service should listen on.
 
 Here's an example of a deployment YAML file:
-
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: my-app
+  name: my-app
 spec:
-replicas: 3
-selector:
-matchLabels:
-app: my-app
-template:
-metadata:
-labels:
-app: my-app
-spec:
-containers:
-- name: my-app
-image: my-app:latest
-ports:
-- containerPort: 80
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app
+        image: my-app:latest
+        ports:
+        - containerPort: 80
 
 In this example, the deployment is named "my-app" and has three replicas. The selector matches pods with the label "app: my-app". The template specifies the container image for the deployment, which is "my-app:latest" and exposes port 80.
 
 Here's an example of a service YAML file:
 
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
-name: my-app
+  name: my-app
 spec:
-selector:
-app: my-app
-ports:
-
-protocol: TCP
-port: 80
-targetPort: 80
+  selector:
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      
 In this example, the service is named "my-app" and selects pods with the label "app: my-app". It exposes port 80 on the service and forwards traffic to port 80 on the pods.
 
 
