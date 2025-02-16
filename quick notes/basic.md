@@ -120,6 +120,7 @@ This guide should give a clear foundational understanding of Kubernetes for both
     namespace: default
     labels:
       app: nginx
+    ```
 ## spec
 Defines the desired state of the resource. The content of this section varies depending on the resource type.
 Example for a Deployment:
@@ -139,7 +140,7 @@ spec:
         image: nginx:1.14.2
         ports:
         - containerPort: 80
-
+```
 ## status
 Provides the current status of the resource. This section is typically populated by the Kubernetes system and is not included in the initial YAML file.
 Example:
@@ -148,7 +149,7 @@ status:
   replicas: 3
   updatedReplicas: 3
   readyReplicas: 3
-
+```
 ## Additional Components
 labels
 Key-value pairs used to organize and select resources.
@@ -157,7 +158,7 @@ Example:
 metadata:
   labels:
     app: nginx
-
+```
 annotations
 Key-value pairs used to attach arbitrary non-identifying metadata to resources.
 Example:
@@ -165,7 +166,7 @@ Example:
 metadata:
   annotations:
     description: "This is an annotation"
-
+```
 selector
 Used to select a group of resources based on their labels.
 Example:
@@ -174,7 +175,7 @@ spec:
   selector:
     matchLabels:
       app: nginx
-
+```
 template
 Defines the Pod template for resources like Deployments and ReplicaSets. It includes metadata and spec for the Pods.
 Example:
@@ -189,7 +190,7 @@ template:
       image: nginx:1.14.2
       ports:
       - containerPort: 80
-
+```
 ## A Quick review
 Sure! In a Kubernetes deployment or service YAML file, there are several sections that define different aspects of the deployment or service. Here's a breakdown of each section:
 
@@ -222,7 +223,7 @@ spec:
         image: my-app:latest
         ports:
         - containerPort: 80
-
+```
 In this example, the deployment is named "my-app" and has three replicas. The selector matches pods with the label "app: my-app". The template specifies the container image for the deployment, which is "my-app:latest" and exposes port 80.
 
 Here's an example of a service YAML file:
@@ -239,7 +240,7 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-      
+```
 In this example, the service is named "my-app" and selects pods with the label "app: my-app". It exposes port 80 on the service and forwards traffic to port 80 on the pods.
 
 
